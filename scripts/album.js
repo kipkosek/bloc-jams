@@ -43,7 +43,10 @@ var albumWright = {
     ] 
 };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a212b6b814298b75ac028bd6eceade00ef6132df
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
           '<tr class="album-view-song-item">'
@@ -89,3 +92,4 @@ window.onload = function() {
         }
     });  
 };
+
