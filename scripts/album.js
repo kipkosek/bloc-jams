@@ -28,6 +28,21 @@ var albumMarconi = {
     ]
 };
 
+var albumWright = {
+    title: 'The Buildings',
+    artist: 'Frank Lloyd Wright',
+    label: 'Taliesin',
+    year: '1867',
+    albumArtUrl: 'assets/images/album_covers/18.png',
+    songs: [
+        {title: 'Prairie Style', duration: '4:24'},
+        {title: 'Robie House', duration: '3:15'},
+        {title: 'Unity Temple', duration: '3:47'},
+        {title: 'Fallingwater', duration: '5:03'},
+        {title: 'Guggenheim', duration: '3:38'}
+    ] 
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
           '<tr class="album-view-song-item">'
@@ -60,5 +75,13 @@ var setCurrentAlbum = function(album) {
 };
 
 window.onload = function() {
-    setCurrentAlbum(albumPicasso);
+    setCurrentAlbum(albumPicasso);    
 };
+
+var albumCover = document.getElementsByClassName('album-cover-art')[0];
+
+albumCover.addEventListener('click', function() {
+    setCurrentAlbum(albumMarconi);
+    });
+
+console.log(document.getElementsByClassName("album"));
