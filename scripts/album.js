@@ -28,6 +28,22 @@ var albumMarconi = {
     ]
 };
 
+var albumWright = {
+    title: 'The Buildings',
+    artist: 'Frank Lloyd Wright',
+    label: 'Taliesin',
+    year: '1867',
+    albumArtUrl: 'assets/images/album_covers/18.png',
+    songs: [
+        {title: 'Prairie Style', duration: '4:24'},
+        {title: 'Robie House', duration: '3:15'},
+        {title: 'Unity Temple', duration: '3:47'},
+        {title: 'Fallingwater', duration: '5:03'},
+        {title: 'Guggenheim', duration: '3:38'}
+    ] 
+};
+
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
           '<tr class="album-view-song-item">'
@@ -40,12 +56,13 @@ var createSongRow = function(songNumber, songName, songLength) {
     return template;
 };
 
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
 var setCurrentAlbum = function(album) {
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
     
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
@@ -61,4 +78,14 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+    
+    var albums = [albumPicasso, albumMarconi, albumWright];
+    var index = 1;
+    albumImage.addEventListener("click", function(event) {
+        setCurrentAlbum(albums[index]);
+        index++;
+        if (index == albums.length) {
+            index = 0;
+        }
+    });  
 };
