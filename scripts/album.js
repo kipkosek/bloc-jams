@@ -37,26 +37,7 @@ var createSongRow = function(songNumber, songName, songLength) {
         + '</tr>'
         ;
     
-<<<<<<< Updated upstream
     var $row = $(template);
-    
-    var clickHandler = function(){
-        var songNumber = $(this).attr('data-song-number');
-        
-            if (currentlyPlayingSong !== null) {
-                var currentlyPlayingCell = $('.song-item-number[data-song-number="' + currentlyPlayingSong + '"]');
-                songItem.html(pauseButtonTemplate);
-                currentlyPlayingCell.html(currentlyPlayingSong);
-            }
-            if (currentlyPlayingSong !== songNumber) {
-                $(this).html(pauseButtonTemplate);
-                currentlyPlayingSong = songNumber;
-            }
-            else if (currentlyPlayingSong === songNumber) {
-                $(this).html(playButtonTemplate);
-                currentlyPlayingSong = null;
-            }
-    };
     
     var onHover = function(event) {
         var songNumberCell = $(this).find('.song-item-number');
@@ -64,38 +45,10 @@ var createSongRow = function(songNumber, songName, songLength) {
         
         if (songNumber !== currentlyPlayingSong) {
             songNumberCell.html(playButtonTemplate);
-=======
-    return $(template);
-};
-
-var setCurrentAlbum = function(album) {
-    var $albumTitle = $('.album-view-title');
-    var $albumArtist = $('.album-view-artist');
-    var $albumReleaseInfo = $('.album-view-release-info');
-    var $albumImage = $('.album-cover-art');
-    var $albumSongList = $('.album-view-song-list');
-    
-    $albumTitle.text(album.title);
-    $albumArtist.text(album.artist);
-    $albumReleaseInfo.text(album.year + ' ' + album.label);
-    $albumImage.attr('src', album.albumArtUrl);
-
-    $albumSongList.empty();
-    
-    for (var i = 0; i < album.songs.length; i++) {
-        var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
-        $albumSongList.append($newRow);
-    }
-};
-
-var findParentByClassName = function(element, targetClass) {
-    if (element) {
-        var currentParent = element.parentElement;
-        while (currentParent.className !== targetClass && currentParent.className !== null) {
-        currentParent = currentParent.parentElement;
->>>>>>> Stashed changes
         }
+
     };
+    
     var offHover = function(event){
         var songNumberCell = $(this).find('.song-item-number');
         var songNumber = songNumberCell.attr('data-song-number');
@@ -105,11 +58,29 @@ var findParentByClassName = function(element, targetClass) {
         }
         
     };
+    
     $row.find('.song-item-number').click(clickHandler);
     $row.hover(onHover, offHover);
     return $row;
 };
+    
+var clickHandler = function(){
+    var songNumber = $(this).attr('data-song-number');
 
+        if (currentlyPlayingSong !== null) {
+            var currentlyPlayingCell = $('.song-item-number[data-song-number="' + currentlyPlayingSong + '"]');
+            currentlyPlayingCell.html(currentlyPlayingSong);
+        }
+        if (currentlyPlayingSong !== songNumber) {
+            $(this).html(pauseButtonTemplate);
+            currentlyPlayingSong = songNumber;
+        }
+        else if (currentlyPlayingSong === songNumber) {
+            $(this).html(playButtonTemplate);
+            currentlyPlayingSong = null;
+        }
+};
+    
 var setCurrentAlbum = function(album) {
     var $albumTitle = $('.album-view-title');
     var $albumArtist = $('.album-view-artist');
